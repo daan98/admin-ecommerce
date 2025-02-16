@@ -1,15 +1,12 @@
 "use client";
 
 import { signIn, signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { BlankProfilePic } from "@/app/assets";
 
 const Navbar = () => {
     const {data: session} = useSession();
-    console.log("session: " , session);
-    console.log({BlankProfilePic})
     return (
         <nav className="bg-slate-900 flex justify-between items-center py-3 px-24 text-white">
             <Link href="/">

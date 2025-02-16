@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Navbar from "@/components/utils/Navbar";
 import { UserSessionProvider } from "./UserSessionProvider";
+import ModalProvider from "@/providers/modal-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <UserSessionProvider>
+            <ModalProvider/>
             <Navbar />
             {children}
           </UserSessionProvider>
