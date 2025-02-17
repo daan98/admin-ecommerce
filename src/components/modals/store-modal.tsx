@@ -2,6 +2,7 @@
 
 import { useStoreModal } from "@/app/hooks/use-store-modal";
 import Modal from "../utils/Modal";
+import CreateStoreForm from "../forms/CreateStoreForm";
 
 export default function StoreModal() {
     const storeModal = useStoreModal();
@@ -13,7 +14,9 @@ export default function StoreModal() {
             OnClose={storeModal.OnClose}
             isOpen={storeModal.isOpen}
         >
-            Create Form will be here.
+            <>
+                <CreateStoreForm />
+            </>
         </Modal>
     );
 };
