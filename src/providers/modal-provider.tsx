@@ -12,7 +12,7 @@ export default function ModalProvider() {
     
 
     if(!isMounted) return null;
-
+    console.log({isMounted})
     return (
         <>
             <StoreModal/>

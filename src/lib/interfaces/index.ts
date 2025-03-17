@@ -1,7 +1,13 @@
-import ModalPropsInterface from "./modal-props-interface";
-import UseStoreModalStoreInterface from "./use-store-modal-store-interface";
+import ModalPropsInterface from "./modalProps.interface";
+import ResponseMessageInterface from "./ResponseMessage.interface";
+import StoreInterface from "./store.interface";
+import UserInterface from "./user.interface";
+import UseStoreModalStoreInterface from "./useStoreModalStore.interface";
 
 export type {
     ModalPropsInterface,
+    ResponseMessageInterface,
+    StoreInterface,
+    UserInterface,
     UseStoreModalStoreInterface,
 }

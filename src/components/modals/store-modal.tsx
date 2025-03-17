@@ -7,6 +7,7 @@ import CreateStoreForm from "../forms/CreateStoreForm";
 export default function StoreModal() {
     const storeModal = useStoreModal();
 
+    console.log({storeModal})
     return (
         <Modal
             title="Create Store"
