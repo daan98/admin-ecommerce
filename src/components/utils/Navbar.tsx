@@ -1,12 +1,16 @@
-"use client";
 
-import { signIn, signOut, useSession } from "next-auth/react";
+
 import Link from "next/link";
 
 import { BlankProfilePic } from "@/app/assets";
+import { createClient } from "@/utils/supabase/server";
+import { Login, signOut } from "@/app/login/actions";
+import { redirect } from "next/navigation";
+import { getLoginUser } from "@/app/api/users/route";
 
-const Navbar = () => {
-    const {data: session} = useSession();
+const Navbar = async () => {
+    const user = await (await getLoginUser()).json();
+
     return (
         <nav className="bg-slate-900 flex justify-between items-center py-3 px-24 text-white">
             <Link href="/">
@@ -18,22 +22,18 @@ const Navbar = () => {
                     Dashboard
                 </Link>
 
-                {session ? (
+                {user ? (
                     <>
-                        <p>Name: {session.user?.name}</p>
-                        <p>Email: {session.user?.email}</p>
+                        <p>Phone: {user.phone}</p>
+                        <p>Email: {user.email}</p>
                         <img
-                            src={session.user?.image ? session.user?.image : BlankProfilePic.src}
+                            src={user.user_metadata?.url ? user.user_metadata?.url : BlankProfilePic.src}
                             alt="useer avatar"
                             className="w-10 h-10 rounded-full"
                         />
                         <button
                             className="bg-red-500 px-3 py-2 rounded"
-                            onClick={async () => {
-                                await signOut({
-                                    callbackUrl: "/"
-                                })
-                            }}
+                            onClick={signOut}
                         >
                             Log Out
                         </button>
@@ -43,7 +43,7 @@ const Navbar = () => {
                 (
                     <button
                         className="bg-sky-500 px-3 py-2 rounded"
-                        onClick={() => signIn()}
+                        onClick={() => redirect('/login')}
                     >
                         Sign in
                     </button>

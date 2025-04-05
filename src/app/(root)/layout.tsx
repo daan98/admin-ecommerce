@@ -1,4 +1,5 @@
 
+
 const layout = async ({ children } : { 
     children: React.ReactNode
 }) => {
@@ -7,8 +8,17 @@ const layout = async ({ children } : {
     TODO: [ ] RETRIEVE STORE INFORMATION, BASED ON THE USER ID.
     TODO: [ ] IF STORE DOES EXIST, REDIRECT TO THE STORE PAGE. OTHERWISE SHOW THE CHILDREN IN THIS PAGE.
      */
+
+    /* const onOpen = useStoreModal((state) => state.OnOpen);
+    const isOpen = useStoreModal((state) => state.isOpen);
+    
+      useEffect(() => {
+        if (!isOpen) {
+          onOpen();
+        }
+      }, [isOpen, onOpen]); */
     return (
-        <div>layout</div>
+        <div>root layout</div>
     )
 }
 

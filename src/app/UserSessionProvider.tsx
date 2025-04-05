@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 
 import { SessionProvider } from "next-auth/react";
 
@@ -8,4 +8,4 @@ export const UserSessionProvider = ({children} : { children: React.ReactNode }) 
         { children }
     </SessionProvider>
   );
-};
+}; */

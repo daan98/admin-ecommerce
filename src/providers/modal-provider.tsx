@@ -1,21 +1,23 @@
-"use client";
 
+
+import { getAllUsers } from "@/app/api/users/route";
 import StoreModal from "@/components/modals/store-modal";
-import { useEffect, useState } from "react";
+import { ResponseMessageInterface } from "@/lib/interfaces";
+import { NextResponse } from "next/server";
 
-export default function ModalProvider() {
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-      setIsMounted(true);
-    }, [])
+export default async function ModalProvider() {
     
+    const checkIfStoreCreated = async () => {
+        const stores : NextResponse<ResponseMessageInterface> = await (await getAllUsers()).json();
+        console.log("users dashboard layout: ", stores);
+        return stores;
+    };
 
-    if(!isMounted) return null;
-    console.log({isMounted})
+    const storeList : NextResponse<ResponseMessageInterface>  = await checkIfStoreCreated();
+
     return (
         <>
-            <StoreModal/>
+            <StoreModal params={storeList}/>
         </>
     );
 };

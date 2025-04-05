@@ -1,4 +1,7 @@
+import { getAllUsers } from "@/app/api/users/route";
 import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
+import { signOut } from "@/app/login/actions";
 
 const layout = async () => {
     /* 
@@ -7,8 +10,22 @@ const layout = async () => {
     TODO: [ ] RETRIEVE STORE INFORMATION, BASED ON THE STORE ID, IF DOESN'T EXIST REDIRECT TO HOME PAGE
     TODO: [ ] DISPLAY STORE INFORMATION
      */
+
+    const supabase = await createClient();
+
+    const { data, error } = await supabase.auth.getUser();
+
+    if(error || !data.user) {
+        redirect('/login');
+    }
+
+    console.log("supabase auth data: ", data);
+
     return (
-        <div>layout</div>
+        <>
+            <div>dashboard layout {data.user.email}</div>
+            <button onClick={signOut}>Sign Out</button>
+        </>
     )
 }
 
